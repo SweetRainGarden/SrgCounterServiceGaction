@@ -1,0 +1,12 @@
+- name: Get counter value
+  id: counter
+  uses: SweetRainGarden/SrgCounterServiceGaction@develop
+  with:
+    keyName: 'exampleKey'
+    hashTheKey: true
+    apiKey: ${{ secrets.API_KEY }}
+    apiDomain: 'https://api.example.com/counter'
+
+# Accessing the output
+- name: Use counter value
+  run: echo "The counter value is ${{ steps.counter.outputs.CounterActionOutput_Counter }}"

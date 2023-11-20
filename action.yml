@@ -1,0 +1,20 @@
+# action.yml
+name: 'SrgCounterServiceGaction'
+description: "Calls an API to retrieve a key's counter value"
+inputs:
+  keyName:
+    description: 'Key name'
+    required: true
+  hashTheKey:
+    description: 'Whether to hash the key'
+    required: false
+    default: 'false'
+  apiKey:
+    description: 'API key for authentication'
+    required: true
+  apiDomain:
+    description: 'API domain'
+    required: true
+outputs:
+  CounterActionOutput_Counter:
+    description: 'The counter value from the API response'
