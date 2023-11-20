@@ -1,0 +1,24 @@
+name: "Test current github action"
+on:
+  push:
+    branches:
+    - '*/*'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !(github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/')) }}
+jobs:
+  test_counter_servce_gaction:
+    name: "Trigger test"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get counter value
+        id: counter
+        uses: SweetRainGarden/SrgCounterServiceGaction@develop
+        with:
+          keyName: "${{ github.event.repository.name }}"
+          apiKey: ${{ secrets.COUNTER_SERVICE_API_KEY }}
+          apiDomain: ${{ secrets.COUNTER_SERVICE_API_DOMAIN }}
+
+      # Accessing the output
+      - name: Use counter value
+        run: echo "The counter value is ${{ steps.counter.outputs.CounterActionOutput_Counter }}"
