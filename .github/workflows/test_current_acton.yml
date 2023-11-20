@@ -3,9 +3,6 @@ on:
   push:
     branches:
     - '*/*'
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ !(github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/')) }}
 jobs:
   test_counter_servce_gaction:
     name: "Trigger test"
