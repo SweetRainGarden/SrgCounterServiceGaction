@@ -1,4 +1,4 @@
-name: "Test current github action"
+name: "Test Current Repo Gction"
 on:
   push:
     branches:
