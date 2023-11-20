@@ -9,13 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get counter value
-        id: setp_counter_service
+        id: step_counter_service
         uses: SweetRainGarden/SrgCounterServiceGaction@develop
         with:
           keyName: "${{ github.event.repository.name }}"
           apiKey: ${{ secrets.COUNTER_SERVICE_API_KEY }}
           apiDomain: ${{ secrets.COUNTER_SERVICE_API_DOMAIN }}
 
-      # Accessing the output
       - name: Use counter value
-        run: echo "The counter value is ${{ steps.setp_counter_service.outputs.CounterActionOutput_Counter }}"
+        run: echo "The counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"

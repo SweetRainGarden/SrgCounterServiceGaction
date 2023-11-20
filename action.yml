@@ -16,5 +16,16 @@ inputs:
     description: 'API domain'
     required: true
 outputs:
-  CounterActionOutput_Counter:
-    description: 'The counter value from the API response'
+  gaction_output_counter_value:
+    description: "The counter value from the API response"
+    value: ${{ steps.step_run_curl_and_output.outputs.step_output_counter_value }}
+runs:
+  using: "composite"
+  steps:
+    - id: step_run_curl_and_output
+      shell: bash
+      run: |
+        echo "mock curl"
+        current_millis=$(date +%s%3N)
+        curl_response_counter="${current_millis}"
+        echo "step_output_counter_value=${curl_response_counter}" >> $GITHUB_OUTPUT
