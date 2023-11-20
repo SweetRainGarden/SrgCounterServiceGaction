@@ -1,6 +1,8 @@
 name: "Test current github action"
 on:
   push:
+    branches:
+    - '*/*'
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ !(github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/')) }}
