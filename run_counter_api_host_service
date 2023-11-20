@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+COUNTER_KEY=$1
+API_KEY=$2
+API_URL=$3
+
+getCounterFromApi() {
+  HEADER_KEY_X_API_KEY="X-Api-Key"
+  namespace="$1"
+  API_KEY="$2"
+  response=$(curl -s -X GET "${API_URL}${namespace}" \
+    -H "$HEADER_KEY_X_API_KEY: $API_KEY")
+  value=$(echo "$response" | jq '.counter')
+  echo "$value"
+}
+count=$(getCounterFromApi "$COUNTER_KEY" "${API_KEY}")
+echo "$count"
