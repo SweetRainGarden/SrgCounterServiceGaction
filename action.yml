@@ -26,10 +26,12 @@ runs:
   using: "composite"
   steps:
     - name: "echo basic inputs for debug"
+      shell: bash
       run: |
         echo "inputs.keyName: ${{ inputs.keyName }}"
         echo "inputs.apiDomain: ${{ inputs.apiDomain }}"
     - id: step_run_curl_and_output
+      shell: bash
       env:
         isForNijiaApiService: ${{ inputs.isNijiaApiService }}
       run: |
