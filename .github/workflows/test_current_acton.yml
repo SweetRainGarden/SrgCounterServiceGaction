@@ -18,6 +18,7 @@ jobs:
           keyName: ${{ github.event.repository.name }}
           apiKey: ${{ secrets.COUNTER_SERVICE_API_KEY }}
           apiDomain: ${{ secrets.COUNTER_SERVICE_API_DOMAIN }}
+          isNijiaApiService: false
 
       - name: "Echo counter value: ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
         run: echo "The counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
