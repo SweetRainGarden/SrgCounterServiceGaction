@@ -29,7 +29,5 @@ runs:
     - id: step_run_curl_and_output
       shell: bash
       run: |
-        echo "mock curl"
-        current_millis=$(date +%s%3N)
-        curl_response_counter="${current_millis}"
-        echo "step_output_counter_value=${curl_response_counter}" >> $GITHUB_OUTPUT
+        cout_api_result=$(bash ${{ github.action_path }}/run_count_api_nijia "${{ inputs.keyName }}" "${{ inputs.apiKey }}")
+        echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
