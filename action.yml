@@ -8,6 +8,10 @@ inputs:
     description: 'Whether to hash the key'
     required: false
     default: 'false'
+  isNijiaApiService:
+    description: 'is Nijia Api Service'
+    required: false
+    default: 'false'
   apiKey:
     description: 'API key for authentication'
     required: true
@@ -29,5 +33,10 @@ runs:
     - id: step_run_curl_and_output
       shell: bash
       run: |
-        cout_api_result=$(bash ${{ github.action_path }}/run_count_api_nijia "${{ inputs.keyName }}" "${{ inputs.apiKey }}")
-        echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
+        if [[ "${{ inputs.isNijiaApiService }}" == "true" ]]; then
+          cout_api_result=$(bash ${{ github.action_path }}/run_count_api_nijia "${{ inputs.keyName }}" "${{ inputs.apiKey }}")
+          echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
+        esle
+          echo "TODO"
+        fi
+
