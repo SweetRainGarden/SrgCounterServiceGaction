@@ -11,7 +11,7 @@ inputs:
   isNijiaApiService:
     description: 'is Nijia Api Service'
     required: false
-    default: 'false'
+    default: 'true'
   apiKey:
     description: 'API key for authentication'
     required: true
