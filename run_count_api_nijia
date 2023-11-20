@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-count_api_key=$1
+COUNTER_KEY=$1
 API_KEY=$2
 
 function md5_to_short_hash() {
   md5_hash="$1"
 
-  # Take the first 20 characters of the MD5 hash
+  # Take the first 20 characters out of the input parameter bc ninjas's limitation
   truncated_hash=${md5_hash:0:20}
 
   echo "$truncated_hash"
@@ -14,9 +14,8 @@ function md5_to_short_hash() {
 getPluginVersionInCountApiByNinjas() {
   API_URL="https://api.api-ninjas.com/v1/counter"
   HEADER_KEY_X_API_KEY="X-Api-Key"
-  API_KEY="$2"
-
   namespace="$1"
+  API_KEY="$2"
   response=$(curl -s -X GET "$API_URL" \
     -H "$HEADER_KEY_X_API_KEY: $API_KEY" \
     -G \
@@ -37,11 +36,11 @@ getPluginVersionInCountApiByNinjas() {
 
 }
 
-ninjia_count_api_key=$(md5_to_short_hash "$count_api_key")
+ninjia_COUNTER_KEY=$(md5_to_short_hash "$COUNTER_KEY")
 
 if [[ -n "${3}" ]]; then
-  echo "${ninjia_count_api_key}"
+  echo "${ninjia_COUNTER_KEY}"
 fi
 
-count=$(getPluginVersionInCountApiByNinjas "$ninjia_count_api_key" "${API_KEY}")
+count=$(getPluginVersionInCountApiByNinjas "$ninjia_COUNTER_KEY" "${API_KEY}")
 echo "$count"
