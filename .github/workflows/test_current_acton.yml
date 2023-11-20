@@ -2,7 +2,7 @@ name: "Test current github action"
 on:
   push:
     branches:
-    - '*/*'
+    - 'develop'
 jobs:
   test_counter_servce_gaction:
     name: "Trigger test"
