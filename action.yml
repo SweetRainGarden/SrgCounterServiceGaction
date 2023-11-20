@@ -22,6 +22,10 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - name: "echo input for debug"
+      shell: bash
+      run: |
+        echo "inputs.keyName: ${{ inputs.keyName }}"
     - id: step_run_curl_and_output
       shell: bash
       run: |
