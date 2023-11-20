@@ -8,7 +8,7 @@ jobs:
     name: "Trigger test"
     runs-on: ubuntu-latest
     steps:
-      - name: Get counter value
+      - name: "Get counter value for key: ${{ github.event.repository.name }}"
         id: step_counter_service
         uses: SweetRainGarden/SrgCounterServiceGaction@develop
         with:
@@ -16,5 +16,5 @@ jobs:
           apiKey: ${{ secrets.COUNTER_SERVICE_API_KEY }}
           apiDomain: ${{ secrets.COUNTER_SERVICE_API_DOMAIN }}
 
-      - name: Use counter value
+      - name: "Echo counter value: ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
         run: echo "The counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
