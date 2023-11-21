@@ -11,10 +11,7 @@ jobs:
     secrets: inherit
   job_read_reuse_workflow_output:
     name: "Echo counter info"
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-    runs-on: ${{ matrix.os }}
+    runs-on: [ ubuntu-latest ]
     needs: job_reuse_counter_workflow
     steps:
       - name: "Echo output value come from another workflow."
