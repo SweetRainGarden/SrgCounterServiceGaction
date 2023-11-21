@@ -2,12 +2,8 @@ name: 'SrgCounterServiceGaction'
 description: "Calls an API to retrieve a key's counter value"
 inputs:
   keyName:
-    description: 'Key name'
+    description: 'Counter Key Name'
     required: true
-  hashTheKey:
-    description: 'Whether to hash the key'
-    required: false
-    default: 'false'
   isNijiaApiService:
     description: 'is Nijia Api Service'
     required: false
@@ -17,11 +13,11 @@ inputs:
     required: true
   apiDomain:
     description: 'API domain'
-    required: true
+    required: false
 outputs:
   gaction_output_counter_value:
     description: "The counter value from the API response"
-    value: ${{ steps.step_run_curl_and_output.outputs.step_output_counter_value }}
+    value: ${{ steps.step_call_api.outputs.step_output_counter_value }}
 runs:
   using: "composite"
   steps:
@@ -30,7 +26,7 @@ runs:
       run: |
         echo "inputs.keyName: ${{ inputs.keyName }}"
         echo "inputs.apiDomain: ${{ inputs.apiDomain }}"
-    - id: step_run_curl_and_output
+    - id: step_call_api
       shell: bash
       env:
         isForNijiaApiService: ${{ inputs.isNijiaApiService }}
