@@ -7,10 +7,10 @@ on:
   workflow_call:
     outputs:
       workflow_output_counter_key:
-        description: "counter key"
+        description: "Counter key"
         value: ${{ jobs.test_counter_servce_gaction.outputs.job_output_counter_key }}
       workflow_output_counter_value:
-        description: "counter value"
+        description: "Counter value"
         value: ${{ jobs.test_counter_servce_gaction.outputs.job_output_counter_value }}
 jobs:
   test_counter_servce_gaction:
