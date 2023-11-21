@@ -15,5 +15,5 @@ jobs:
         id: step_echo_workflow_output
         run: |
           echo "The workflow_output_counter_key:${{ needs.job_ran_reuse_workflow.outputs.workflow_output_counter_key }}"
-          echo "The workflow_output_counter_key:${{ needs.job_ran_reuse_workflow.outputs.workflow_output_counter_value }}"
+          echo "The workflow_output_counter_value:${{ needs.job_ran_reuse_workflow.outputs.workflow_output_counter_value }}"
 
