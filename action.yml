@@ -37,10 +37,12 @@ runs:
           echo "isForNinjaApiService ----> $isForNinjaApiService"
           
           cout_api_result=$(bash "${GITHUB_ACTION_PATH}/run_counter_api_ninja" "${{ inputs.keyName }}" "${{ inputs.apiKey }}")
+          echo "cout_api_result --> $cout_api_result"
           echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
         else
           echo "isForNinjaApiService ----> $isForNinjaApiService"
           cout_api_result=$(bash "${GITHUB_ACTION_PATH}/run_counter_api_host_service" "${{ inputs.keyName }}" "${{ inputs.apiKey }}" "${{ inputs.apiDomain }}")
+          echo "cout_api_result --> $cout_api_result"
           echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
         fi
 
