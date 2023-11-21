@@ -1,9 +1,9 @@
 name: "Test Current Repo Gaction"
 on:
-  push:
-    branches:
-    - 'develop'
-    - 'randy/*'
+  # push:
+  #   branches:
+  #   - 'develop'
+  #   - 'randy/*'
   workflow_call:
     outputs:
       workflow_output_counter_key:
