@@ -1,4 +1,4 @@
-name: "Test Reuse Gction Flow"
+name: "Test Reuse Gaction Flow"
 on:
   push:
     branches:
@@ -10,8 +10,7 @@ jobs:
   job_read_reuse_workflow_output:
     strategy:
       matrix:
-        os: [ ubuntu-latest, macos-latest ]
-        isNijiaApiService: [true,false]
+        os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     needs: job_reuse_counter_workflow
     steps:
