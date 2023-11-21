@@ -11,13 +11,14 @@ fi
 
 getCounterFromApi() {
   HEADER_KEY_X_API_KEY="X-Api-Key"
-  local api_key="$2"
   namespace="$1"
-  API_KEY="$2"
-  response=$(curl -s -X GET "${API_URL}${namespace}" \
-    -H "$HEADER_KEY_X_API_KEY: $API_KEY")
+  api_url="$2"
+  api_key="$3"
+
+  response=$(curl -s -X GET "${api_url}${namespace}" \
+    -H "$HEADER_KEY_X_API_KEY: $api_key")
   value=$(echo "$response" | jq '.counter')
   echo "$value"
 }
-count=$(getCounterFromApi "$COUNTER_KEY" "${API_KEY}")
+count=$(getCounterFromApi "$COUNTER_KEY" "${API_URL}" "${API_KEY}" )
 echo "$count"
