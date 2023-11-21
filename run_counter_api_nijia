@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# refactor this script
 COUNTER_KEY=$1
 API_KEY=$2
 
