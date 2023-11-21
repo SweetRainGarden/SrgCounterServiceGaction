@@ -7,10 +7,10 @@ on:
   workflow_call:
     outputs:
       workflow_output_counter_key:
-        description: "counter key"
+        description: "Counter key"
         value: ${{ jobs.test_counter_servce_gaction.outputs.job_output_counter_key }}
       workflow_output_counter_value:
-        description: "counter value"
+        description: "Counter value"
         value: ${{ jobs.test_counter_servce_gaction.outputs.job_output_counter_value }}
 jobs:
   test_counter_servce_gaction:
@@ -36,6 +36,6 @@ jobs:
       - name: "Echo counter value: ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
         id: step_echo_output
         run: |
-          echo "The key:${{ github.event.repository.name }}'s counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
-          echo "counter_key=${{ github.event.repository.name }} >> $GITHUB_OUTPUT
-          echo "counter_value=${{ steps.step_counter_service.outputs.gaction_output_counter_value }} >> $GITHUB_OUTPUT
+          echo "The key: ${{ github.event.repository.name }}'s counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
+          echo "counter_key=${{ github.event.repository.name }}" >> $GITHUB_OUTPUT
+          echo "counter_value=${{ steps.step_counter_service.outputs.gaction_output_counter_value }}" >> $GITHUB_OUTPUT
