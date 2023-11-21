@@ -8,7 +8,11 @@ jobs:
   job_reuse_counter_workflow:
     uses: ./.github/workflows/test_current_acton.yml
   job_read_reuse_workflow_output:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+        isNijiaApiService: [true,false]
+    runs-on: ${{ matrix.os }}
     needs: job_reuse_counter_workflow
     steps:
       - name: "Echo output value come from another workflow."
