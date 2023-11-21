@@ -9,7 +9,6 @@ jobs:
       matrix:
         os: [ ubuntu-latest, macos-latest ]
         isNijiaApiService: [true,false]
-    name: "Trigger test"
     runs-on: ${{ matrix.os }}
     steps:
       - name: "Get counter value for key: ${{ github.event.repository.name }}"
