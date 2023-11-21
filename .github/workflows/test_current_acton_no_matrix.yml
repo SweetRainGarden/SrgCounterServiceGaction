@@ -1,24 +1,16 @@
-name: "Test Current Repo Gaction"
+name: "Test Workflow without Matrix"
 on:
-  push:
-    branches:
-    - 'develop'
-    - 'randy/*'
   workflow_call:
     outputs:
       workflow_output_counter_key:
         description: "Counter key"
-        value: ${{ jobs.test_counter_servce_gaction.outputs.job_output_counter_key }}
+        value: ${{ jobs.test_counter_servce_gaction_without_matrix.outputs.job_output_counter_key }}
       workflow_output_counter_value:
         description: "Counter value"
-        value: ${{ jobs.test_counter_servce_gaction.outputs.job_output_counter_value }}
+        value: ${{ jobs.test_counter_servce_gaction_without_matrix.outputs.job_output_counter_value }}
 jobs:
-  test_counter_servce_gaction:
-    strategy:
-      matrix:
-        os: [ macos-latest, ubuntu-latest ]
-        isEnableNinjaApiService: [ false, true ]
-    runs-on: ${{ matrix.os }}
+  test_counter_servce_gaction_without_matrix:
+    runs-on: [ macos-latest ]
     outputs:
       job_output_counter_key: ${{ steps.step_echo_output.outputs.counter_key }}
       job_output_counter_value: ${{ steps.step_echo_output.outputs.counter_value }}

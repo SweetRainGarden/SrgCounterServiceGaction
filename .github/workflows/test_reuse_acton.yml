@@ -7,7 +7,7 @@ on:
 jobs:
   job_reuse_counter_workflow:
     name: "run counter service"
-    uses: ./.github/workflows/test_current_acton.yml
+    uses: ./.github/workflows/test_current_acton_no_matrix.yml
     secrets: inherit
   job_read_reuse_workflow_output:
     name: "Echo counter info"
