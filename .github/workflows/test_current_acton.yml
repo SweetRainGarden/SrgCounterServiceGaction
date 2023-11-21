@@ -36,6 +36,6 @@ jobs:
       - name: "Echo counter value: ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
         id: step_echo_output
         run: |
-          echo "The key:${{ github.event.repository.name }}'s counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
-          echo "counter_key=${{ github.event.repository.name }} >> $GITHUB_OUTPUT
-          echo "counter_value=${{ steps.step_counter_service.outputs.gaction_output_counter_value }} >> $GITHUB_OUTPUT
+          echo "The key: ${{ github.event.repository.name }}'s counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
+          echo "counter_key=${{ github.event.repository.name }}" >> $GITHUB_OUTPUT
+          echo "counter_value=${{ steps.step_counter_service.outputs.gaction_output_counter_value }}" >> $GITHUB_OUTPUT
