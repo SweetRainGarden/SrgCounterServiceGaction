@@ -21,6 +21,11 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - name: '000 -> Setup jq'
+    uses: dcarbone/install-jq-action@v2.0.2
+    with:
+      version: '1.7'
+      force: 'false'
     - name: "echo basic inputs for debug"
       shell: bash
       run: |
