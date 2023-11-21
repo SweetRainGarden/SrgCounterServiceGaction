@@ -4,6 +4,11 @@ COUNTER_KEY=$1
 API_KEY=$2
 API_URL=$3
 
+if [ -z "$COUNTER_KEY" ] || [ -z "$API_KEY" ] || [ -z "$API_URL" ]; then
+  echo "Error: Missing required parameters."
+  exit 1
+fi
+
 getCounterFromApi() {
   HEADER_KEY_X_API_KEY="X-Api-Key"
   namespace="$1"
