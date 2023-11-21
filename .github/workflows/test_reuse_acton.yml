@@ -5,15 +5,14 @@ on:
     - 'develop'
     - 'randy/*'
 jobs:
-  job_ran_reuse_workflow:
+  job_reuse_counter_workflow:
     uses: ./.github/workflows/test_current_acton.yml
-  job2:
+  job_read_reuse_workflow_output:
     runs-on: ubuntu-latest
-    needs: job_ran_reuse_workflow
+    needs: job_reuse_counter_workflow
     steps:
       - name: "Echo output value come from another workflow."
         id: step_echo_workflow_output
         run: |
-          echo "The workflow_output_counter_key:${{ needs.job_ran_reuse_workflow.outputs.workflow_output_counter_key }}"
-          echo "The workflow_output_counter_value:${{ needs.job_ran_reuse_workflow.outputs.workflow_output_counter_value }}"
-
+          echo "The workflow_output_counter_key:${{ needs.job_reuse_counter_workflow.outputs.workflow_output_counter_key }}"
+          echo "The workflow_output_counter_value:${{ needs.job_reuse_counter_workflow.outputs.workflow_output_counter_value }}"
