@@ -21,4 +21,4 @@ jobs:
           isNijiaApiService: ${{ matrix.isNijiaApiService }}
 
       - name: "Echo counter value: ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
-        run: echo "The counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
+        run: echo "The key:${{ github.event.repository.name }}'s counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
