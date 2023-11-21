@@ -15,7 +15,7 @@ getCounterFromApi() {
   api_url="$2"
   api_key="$3"
 
-  response=$(curl -s -X GET "${api_url}${namespace}" \
+  response=$(curl -s -X GET "${api_url}?key=${namespace}" \
     -H "$HEADER_KEY_X_API_KEY: $api_key")
   value=$(echo "$response" | jq '.counter')
   echo "$value"
