@@ -3,6 +3,7 @@ on:
   push:
     branches:
     - 'develop'
+    - '*/*'
 jobs:
   test_counter_servce_gaction:
     strategy:
