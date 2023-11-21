@@ -6,9 +6,11 @@ on:
     - 'randy/*'
 jobs:
   job_reuse_counter_workflow:
+    name: "run counter service"
     uses: ./.github/workflows/test_current_acton.yml
     secrets: inherit
   job_read_reuse_workflow_output:
+    name: "Echo counter info"
     strategy:
       matrix:
         os: [ ubuntu-latest ]
