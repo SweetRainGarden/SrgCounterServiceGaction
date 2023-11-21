@@ -1,16 +1,28 @@
-name: "Test Current Repo Gction"
+name: "Test Current Repo Gaction"
 on:
   push:
     branches:
     - 'develop'
     - 'randy/*'
+  workflow_call:
+    outputs:
+      workflow_output_counter_key:
+        description: "counter key"
+        value: ${{ jobs.test_counter_servce_gaction.outputs.job_output_counter_key }}
+      workflow_output_counter_value:
+        description: "counter value"
+        value: ${{ jobs.test_counter_servce_gaction.outputs.job_output_counter_value }}
 jobs:
   test_counter_servce_gaction:
     strategy:
       matrix:
         os: [ ubuntu-latest, macos-latest ]
-        isNijiaApiService: [true,false]
+        isEnableNinjaApiService: [true,false]
     runs-on: ${{ matrix.os }}
+    outputs:
+      job_output_counter_key: ${{ steps.step_echo_output.outputs.counter_key }}
+      job_output_counter_value: ${{ steps.step_echo_output.outputs.counter_value }}
+
     steps:
       - name: "Get counter value for key: ${{ github.event.repository.name }}"
         id: step_counter_service
@@ -19,7 +31,11 @@ jobs:
           keyName: ${{ github.event.repository.name }}
           apiKey: ${{ secrets.COUNTER_SERVICE_API_KEY }}
           apiDomain: ${{ secrets.COUNTER_SERVICE_API_DOMAIN }}
-          isNijiaApiService: ${{ matrix.isNijiaApiService }}
+          isNinjaApiService: ${{ matrix.isEnableNinjaApiService }}
 
       - name: "Echo counter value: ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
-        run: echo "The key:${{ github.event.repository.name }}'s counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
+        id: step_echo_output
+        run: |
+          echo "The key:${{ github.event.repository.name }}'s counter value is ${{ steps.step_counter_service.outputs.gaction_output_counter_value }}"
+          echo "counter_key=${{ github.event.repository.name }} >> $GITHUB_OUTPUT
+          echo "counter_value=${{ steps.step_counter_service.outputs.gaction_output_counter_value }} >> $GITHUB_OUTPUT

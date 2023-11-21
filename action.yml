@@ -4,8 +4,8 @@ inputs:
   keyName:
     description: 'Counter Key Name'
     required: true
-  isNijiaApiService:
-    description: 'is Nijia Api Service'
+  isNinjaApiService:
+    description: 'is Ninja Api Service'
     required: false
     default: 'true'
   apiKey:
@@ -29,14 +29,14 @@ runs:
     - id: step_call_api
       shell: bash
       env:
-        isForNijiaApiService: ${{ inputs.isNijiaApiService }}
+        isForNinjaApiService: ${{ inputs.isNinjaApiService }}
       run: |
-        if [ "$isForNijiaApiService" = "true" ]; then
-          echo "isForNijiaApiService ----> $isForNijiaApiService"
-          cout_api_result=$(bash ${{ github.action_path }}/run_counter_api_nijia "${{ inputs.keyName }}" "${{ inputs.apiKey }}")
+        if [ "$isForNinjaApiService" = "true" ]; then
+          echo "isForNinjaApiService ----> $isForNinjaApiService"
+          cout_api_result=$(bash ${{ github.action_path }}/run_counter_api_ninja "${{ inputs.keyName }}" "${{ inputs.apiKey }}")
           echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
         else
-          echo "isForNijiaApiService ----> $isForNijiaApiService"
+          echo "isForNinjaApiService ----> $isForNinjaApiService"
           cout_api_result=$(bash ${{ github.action_path }}/run_counter_api_host_service "${{ inputs.keyName }}" "${{ inputs.apiKey }}" "${{ inputs.apiDomain }}")
           echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
         fi

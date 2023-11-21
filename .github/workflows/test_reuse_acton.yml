@@ -1,0 +1,21 @@
+name: "Test Reuse Gaction Flow"
+on:
+  push:
+    branches:
+    - 'develop'
+    - 'randy/*'
+jobs:
+  job_reuse_counter_workflow:
+    uses: ./.github/workflows/test_current_acton.yml
+  job_read_reuse_workflow_output:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
+    needs: job_reuse_counter_workflow
+    steps:
+      - name: "Echo output value come from another workflow."
+        id: step_echo_workflow_output
+        run: |
+          echo "The workflow_output_counter_key:${{ needs.job_reuse_counter_workflow.outputs.workflow_output_counter_key }}"
+          echo "The workflow_output_counter_value:${{ needs.job_reuse_counter_workflow.outputs.workflow_output_counter_value }}"
