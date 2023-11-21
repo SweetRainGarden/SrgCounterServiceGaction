@@ -6,13 +6,12 @@ on:
     - 'randy/*'
 jobs:
   job_reuse_counter_workflow:
-    uses: ./.github/workflows/test_current_acton.yml
+    name: "run counter service"
+    uses: ./.github/workflows/test_current_action_no_matrix.yml
     secrets: inherit
   job_read_reuse_workflow_output:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-    runs-on: ${{ matrix.os }}
+    name: "Echo counter info"
+    runs-on: [ ubuntu-latest ]
     needs: job_reuse_counter_workflow
     steps:
       - name: "Echo output value come from another workflow."
