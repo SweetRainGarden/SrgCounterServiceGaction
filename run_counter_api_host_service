@@ -11,6 +11,7 @@ fi
 
 getCounterFromApi() {
   HEADER_KEY_X_API_KEY="X-Api-Key"
+  local api_key="$2"
   namespace="$1"
   API_KEY="$2"
   response=$(curl -s -X GET "${API_URL}${namespace}" \
