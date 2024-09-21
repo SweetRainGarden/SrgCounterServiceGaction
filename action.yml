@@ -43,11 +43,24 @@ runs:
           
           cout_api_result=$(bash "${GITHUB_ACTION_PATH}/run_counter_api_ninja" "${{ inputs.keyName }}" "${{ inputs.apiKey }}")
           echo "cout_api_result --> $cout_api_result"
-          echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
+          
+          if [ -z "$cout_api_result" ]; then
+              echo "API result is empty. Failing CI/CD pipeline."
+              exit 1  # Exit with non-zero status to fail the CI/CD
+          else
+              echo "API result is not empty. Continuing pipeline."
+              echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
+          fi
         else
           echo "isForNinjaApiService ----> $isForNinjaApiService"
           cout_api_result=$(bash "${GITHUB_ACTION_PATH}/run_counter_api_host_service" "${{ inputs.keyName }}" "${{ inputs.apiKey }}" "${{ inputs.apiDomain }}")
           echo "cout_api_result --> $cout_api_result"
-          echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
+          if [ -z "$cout_api_result" ]; then
+              echo "API result is empty. Failing CI/CD pipeline."
+              exit 1  # Exit with non-zero status to fail the CI/CD
+          else
+              echo "API result is not empty. Continuing pipeline."
+              echo "step_output_counter_value=${cout_api_result}" >> $GITHUB_OUTPUT
+          fi
         fi
 
