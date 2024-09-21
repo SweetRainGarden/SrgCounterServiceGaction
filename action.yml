@@ -43,7 +43,6 @@ runs:
           
           cout_api_result=$(bash "${GITHUB_ACTION_PATH}/run_counter_api_ninja" "${{ inputs.keyName }}" "${{ inputs.apiKey }}")
           echo "cout_api_result --> $cout_api_result"
-          
           if [ -z "$cout_api_result" ]; then
               echo "API result is empty. Failing CI/CD pipeline."
               exit 1  # Exit with non-zero status to fail the CI/CD
