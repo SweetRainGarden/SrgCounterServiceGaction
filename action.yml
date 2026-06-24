@@ -22,7 +22,7 @@ runs:
   using: "composite"
   steps:
     - name: '000 -> Setup jq'
-      uses: dcarbone/install-jq-action@v3.0.1
+      uses: dcarbone/install-jq-action@v4.0.1
       with:
         version: '1.7'
         force: 'false'
